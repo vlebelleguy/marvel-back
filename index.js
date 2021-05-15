@@ -19,7 +19,7 @@ app.get("/characters", async (req, res) => {
     //   limit = 100;
     // }
     const response = await axios.get(
-      `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.MARVEL_API_KEY}&limit=${limit}&skip=${skip}`
+      `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.MARVEL_API_KEY}&name=${name}`
     );
     console.log(response.data);
     res.json(response.data);
