@@ -10,21 +10,25 @@ app.use(cors());
 
 app.get("/characters", async (req, res) => {
   try {
-    // Requête à l'API Marvel pour obtenir une liste de comics
-    const limit = req.query.limit || 100;
-    const skip = req.query.skip || 0;
-    // if (req.query.limit) {
-    //   limit = req.query.limit;
-    // } else {
-    //   limit = 100;
-    // }
-    let name = "";
+try {
+      let limit = 100;
+      if (req.query.limit) {
+         limit = Number(req.query.limit);
+      }
+
+      let skip = 0;
+      if (req.query.skip) {
+         skip = Number(req.query.skip);
+      }
+
+      let name = "";
       if (req.query.name) {
          name = req.query.name;
       }
-    const response = await axios.get(
-      `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.MARVEL_API_KEY}&limit=${limit}&skip=${skip}&name=${name}`
-    );
+
+      const response = await axios.get(
+         `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.MARVEL_API_KEY}&limit=${limit}&skip=${skip}&name=${name}`
+      );
     console.log(response.data);
     res.json(response.data);
   } catch (error) {
