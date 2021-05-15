@@ -16,18 +16,13 @@ try {
          limit = Number(req.query.limit);
       }
 
-      let skip = 0;
-      if (req.query.skip) {
-         skip = Number(req.query.skip);
-      }
-
       let name = "";
       if (req.query.name) {
          name = req.query.name;
       }
 
       const response = await axios.get(
-         `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.MARVEL_API_KEY}&limit=${limit}&skip=${skip}&name=${name}`
+         `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.MARVEL_API_KEY}&limit=${limit}&name=${name}`
       );
     console.log(response.data);
     res.json(response.data);
@@ -36,7 +31,12 @@ try {
   }
 });
 
-
+app.get("/", (req, res) => {
+  res
+    .status(200)
+    .json({ message: "🦸‍♂️ Welcome to the Marvel API by Valentin!" });
+});
+  
 app.all("*", (req, res) => {
   res
     .status(404)
