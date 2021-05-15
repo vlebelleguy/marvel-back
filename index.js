@@ -28,26 +28,6 @@ app.get("/characters", async (req, res) => {
   }
 });
 
-app.get("/comics", async (req, res) => {
-  try {
-    // Requête à l'API Marvel pour obtenir une liste de comics
-    const limit = req.query.limit || 100;
-    const skip = req.query.skip || 0;
-    // if (req.query.limit) {
-    //   limit = req.query.limit;
-    // } else {
-    //   limit = 100;
-    // }
-    const response = await axios.get(
-      `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${process.env.MARVEL_API_KEY}&limit=${limit}&skip=${skip}`
-    );
-    console.log(response.data);
-    res.json(response.data);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
-
 app.get("/", (req, res) => {
   res
     .status(200)
