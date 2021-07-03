@@ -15,7 +15,7 @@
 
 `git clone https://github.com/vlebelleguy/marvel-back.git`
       
-`cd deliveroo-back`
+`cd marvel-back`
       
 <h4>Install The Packages</h4>
       
